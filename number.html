@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="get-ascii.php" method="POST">
+		<input type="hidden" name="numbers">
+		<label>
+			<input type="number">
+			<button type="button">Add</button>
+		</label>
+		<ul></ul>
+		<label><input type="submit" value="translate me!"></label>
+	</form>
+	<script>
+var numbers = [];
+var btn = document.querySelector('form button');
+btn.addEventListener('click', function (event) {
+	var input = document.querySelector('form input[type=number]');
+	console.log(input)
+	numbers.push(parseInt(input.value));
+	printNumber(input.value);
+	input.value = '';
+
+	storeNumbers(numbers);
+})
+
+function printNumber(number) {
+	var li = document.createElement('li');
+	li.textContent = number;
+	var ul = document.querySelector('form ul');
+	ul.append(li);
+}
+
+function storeNumbers (numbers) {
+	document.querySelector('form input[name=numbers]').value = JSON.stringify(numbers);
+}
+
+
+	</script>
+</body>
+</html>
